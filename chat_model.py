@@ -5,4 +5,7 @@ load_dotenv()
 
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro")
 
-print(llm)
+response = llm.invoke("เมืองหลวงของประเทศไทยคืออะไร")
+
+print(response)
+print(response.content)
