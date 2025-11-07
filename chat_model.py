@@ -3,7 +3,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro")
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-pro",
+    temperature=0.3
+)
 
 response = llm.invoke("เมืองหลวงของประเทศไทยคืออะไร")
 
