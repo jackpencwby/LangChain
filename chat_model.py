@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-prompt = ChatPromptTemplate.from_template(
-    "เมืองหลวงของ {country} คืออะไร"
-)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "คุณเป็นผู้เชี่ยวชาญด้าน {expertise} ที่ตอบคำถามเข้าใจได้ง่าย กระชับ เเละชัดเจน"),
+    ("human", "อธิบายเกี่ยวกับ {topic}")
+])
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-pro",
@@ -15,6 +16,11 @@ llm = ChatGoogleGenerativeAI(
 
 chain = prompt | llm
 
-response = chain.invoke({"country": "ประเทศไทย"})
+response = chain.invoke(
+    {
+        "expertise": "ฟิสิกส์",
+        "topic": "กฎการเคลื่อนที่ของนิวตัน"
+    }
+)
 
 print(response.content)
